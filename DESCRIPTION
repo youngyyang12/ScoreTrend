@@ -1,7 +1,7 @@
 Package: ScoreTrend
 Type: Package
-Title: Team Score Trend
-Version: 0.1.0
+Title: Team Score Trend Analysis
+Version: 0.0.0.9000
 Author: Yi Yang <yiy12@usf.edu>
 Maintainer: Yi Yang <yiy12@usf.edu>
 Description: Functions for calculate and plot a graph to show the score trend of a team.(Scored points and lost points)
