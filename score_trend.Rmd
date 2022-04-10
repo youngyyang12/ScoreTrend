@@ -1,0 +1,61 @@
+---
+title: "Score Trend"
+author: "Yi Yang"
+date: "4/8/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# load the tidyverse
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+
+# load Project Data
+score_stats<- read.csv("oregon_football.csv")
+
+```
+
+## Introduction
+
+&nbsp;&nbsp;&nbsp;&nbsp; This is an R Markdown document. The purpose of this file is to show case some main functions might use in my final project package. All code block show above is just rough draft. I will keep updating the file as the I continue update my final project package.
+
+
+## Calculate the total points scored vs total points allowed of all time
+```{r,message=FALSE}
+# create a new data frame
+overall_trend<- score_stats %>%
+  group_by(season) %>%
+  summarize(total_score=sum(points_scored),
+            total_allowed=sum(points_allowed))
+
+# plot graph by yeas to show points scored and allowed
+ggplot()+
+  geom_line(data = overall_trend, aes(season,total_score),colour= "green")+
+  geom_line(data = overall_trend, aes(season,total_allowed),colour= "red")+
+  labs(x= "Season",
+       y= "Point",
+       caption = "Overall Score Trend. Green line represent points scored. Red line represent points allowed")+
+  scale_x_continuous(n.breaks = 10)+
+  scale_y_continuous(n.breaks = 10)
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp; The code above will sort all games by season years and show the total points scored and allowed in each season. Then create a plot to visualize the trend. 
+
+&nbsp;&nbsp;&nbsp;&nbsp; I'm also considering to do more modification with the code, such as using loops to create new data frame that show the score trend by decade that specifically selected. 
+
+
+## Team vs Team 
+```{r}
+# Add new column to show the game result 
+by_team<- score_stats %>%
+  filter(opponent == "UCLA", season > 2000)
+  by_team$win_lose <- ifelse(by_team$points_scored > by_team$points_allowed, 'Win',
+                   ifelse(by_team$points_scored < by_team$points_allowed, 'Lose','Tie'))
+
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp; The code shown above can shown if team win or defeated selected opponent. I'm still working on this function, such as to print out numbers of winning games in selected period. etc. 
+
