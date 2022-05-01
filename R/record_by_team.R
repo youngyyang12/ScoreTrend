@@ -1,9 +1,5 @@
 record_by_team <- function(college,X){
 
-library(tidyverse)
-library(lubridate)
-library(ggplot2)
-
 score_stats = read.csv("oregon_football.csv")
 
 

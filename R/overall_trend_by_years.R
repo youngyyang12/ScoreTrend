@@ -1,8 +1,4 @@
 overall_trend_by_years <- function(){
-library(tidyverse)
-library(lubridate)
-library(ggplot2)
-
 
 score_stats = read.csv("oregon_football.csv")
 
