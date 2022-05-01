@@ -1,7 +1,7 @@
 ---
 title: "Score Trend"
 author: "Yi Yang"
-date: "4/8/2022"
+date: "4/30/2022"
 output: html_document
 ---
 
@@ -20,7 +20,7 @@ score_stats<- read.csv("oregon_football.csv")
 
 ## Introduction
 
-&nbsp;&nbsp;&nbsp;&nbsp; This is an R Markdown document. The purpose of this file is to show case some main functions might use in my final project package. All code block show above is just rough draft. I will keep updating the file as the I continue update my final project package.
+&nbsp;&nbsp;&nbsp;&nbsp; This is an R Markdown document. The purpose of this file is to showcase main functions used in my final project package. The package is updated in the Github and use can use function "install_github("youngyyang12/ScoreTrend")" to install the package which included in "devtools".
 
 
 ## Calculate the total points scored vs total points allowed of all time (function name: overall_trend_by_years)
