@@ -1,4 +1,4 @@
-record_by_team <- function(college){
+record_by_team <- function(college,X){
 
 library(tidyverse)
 library(lubridate)
@@ -8,7 +8,7 @@ score_stats = read.csv("oregon_football.csv")
 
 
 by_team<- score_stats %>%
-  filter(opponent == college, season > 0)
+  filter(opponent == college, season > X)
   by_team$win_lose <- ifelse(by_team$points_scored > by_team$points_allowed, 'Win',
                            ifelse(by_team$points_scored < by_team$points_allowed, 'Lose','Tie'))
 
