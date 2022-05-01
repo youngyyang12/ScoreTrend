@@ -1,3 +1,6 @@
+#'Create a line graph to show scoring trend from beginning.
+#'@export
+
 overall_trend_by_years <- function(){
 
 score_stats = read.csv("oregon_football.csv")

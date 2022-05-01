@@ -1,3 +1,7 @@
+#'Show the home team season stats when enter particular season.
+#'@export
+#'@param X numeric variable
+
 stats_by_season <- function(X){
 
   score_stats = read.csv("oregon_football.csv")

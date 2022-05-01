@@ -1,3 +1,8 @@
+#'Show how many games are played after enter particular season and show game results.
+#'@export
+#'@param X numeric variable
+#'@param college character string
+
 record_by_team <- function(college,X){
 
 score_stats = read.csv("oregon_football.csv")
