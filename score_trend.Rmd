@@ -23,13 +23,16 @@ score_stats<- read.csv("oregon_football.csv")
 &nbsp;&nbsp;&nbsp;&nbsp; This is an R Markdown document. The purpose of this file is to show case some main functions might use in my final project package. All code block show above is just rough draft. I will keep updating the file as the I continue update my final project package.
 
 
-## Calculate the total points scored vs total points allowed of all time
-```{r,message=FALSE}
+## Calculate the total points scored vs total points allowed of all time (function name: overall_trend_by_years)
+```{r,message=FALSE,echo=TRUE}
+score_stats = read.csv("oregon_football.csv")
+
 # create a new data frame
 overall_trend<- score_stats %>%
-  group_by(season) %>%
+  group_by(season)%>%
   summarize(total_score=sum(points_scored),
             total_allowed=sum(points_allowed))
+
 
 # plot graph by yeas to show points scored and allowed
 ggplot()+
@@ -40,22 +43,44 @@ ggplot()+
        caption = "Overall Score Trend. Green line represent points scored. Red line represent points allowed")+
   scale_x_continuous(n.breaks = 10)+
   scale_y_continuous(n.breaks = 10)
+
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp; The code above will sort all games by season years and show the total points scored and allowed in each season. Then create a plot to visualize the trend. 
 
-&nbsp;&nbsp;&nbsp;&nbsp; I'm also considering to do more modification with the code, such as using loops to create new data frame that show the score trend by decade that specifically selected. 
+
+## Team vs Team (function: record_by_team)
+```{r,message=FALSE,echo=TRUE}
+
+score_stats = read.csv("oregon_football.csv")
 
 
-## Team vs Team 
-```{r}
-# Add new column to show the game result 
 by_team<- score_stats %>%
-  filter(opponent == "UCLA", season > 2000)
+  filter(opponent == "UCLA", season >2000)
   by_team$win_lose <- ifelse(by_team$points_scored > by_team$points_allowed, 'Win',
-                   ifelse(by_team$points_scored < by_team$points_allowed, 'Lose','Tie'))
+                           ifelse(by_team$points_scored < by_team$points_allowed, 'Lose','Tie'))
 
+
+  data.frame(Games = nrow(subset(by_team, opponent == "UCLA")),
+             Win = nrow(subset(by_team, win_lose == "Win")),
+             Lose = nrow(subset(by_team, win_lose == "Lose")))
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp; The code shown above can shown if team win or defeated selected opponent. I'm still working on this function, such as to print out numbers of winning games in selected period. etc. 
+&nbsp;&nbsp;&nbsp;&nbsp; The code above can let user enter team and season.The result will show how many games are played after that season and game results.
 
+
+## Home team season stats (function name: stats_by_season)
+```{r,message=FALSE,echo=TRUE}
+  score_stats = read.csv("oregon_football.csv")
+
+  by_years<- score_stats %>%
+    filter(season == 2000)
+
+  data.frame(highest_score = max(by_years$points_scored),
+             highest_allowed = max(by_years$points_allowed),
+             home_average = round(mean(by_years$points_scored),digits = 1),
+             opp_average = round(mean(by_years$points_allowed),digits = 1)
+             )
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp; The code above will show the home team season stats when user enter particular season. The result include highest score of home team, highest score of opponent team, average score of home team and average score of opponent team.
