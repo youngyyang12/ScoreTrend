@@ -6,8 +6,7 @@ Author: Yi Yang <yiy12@usf.edu>
 Maintainer: Yi Yang <yiy12@usf.edu>
 Description: Functions for calculate and plot a graph to show the score trend of a team.(Scored points and lost points)
         Catrgory by year and team.
-Depends: R (>= 3.1.2)
-Imports:tidyverse, lubridate, ggplot2
+Depends: R (>= 3.1.2), tidyverse, lubridate, ggplot2
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
